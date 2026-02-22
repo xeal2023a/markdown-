@@ -1,5 +1,5 @@
 import { useMemo, useEffect, useState } from 'react';
-import { marked } from 'marked';
+import { marked, Renderer } from 'marked';
 import { markedHighlight } from 'marked-highlight';
 import hljs from 'highlight.js';
 import { useNotes } from '../context/NotesContext';
@@ -11,7 +11,22 @@ interface TocItem {
   level: number;
 }
 
-export function Preview() {
+interface PreviewProps {
+  scrollRef?: React.RefObject<HTMLDivElement | null>;
+  onScroll?: (position: number) => void;
+}
+
+// 创建自定义渲染器，禁用 codespan 的 HTML 转义
+const createRenderer = () => {
+  const renderer = new Renderer();
+  renderer.codespan = ({ text }) => {
+    // 不转义，直接返回
+    return `<code>${text}</code>`;
+  };
+  return renderer;
+};
+
+export function Preview({ scrollRef, onScroll }: PreviewProps) {
   const { currentNote } = useNotes();
   const [toc, setToc] = useState<TocItem[]>([]);
 
@@ -26,6 +41,9 @@ export function Preview() {
         },
       })
     );
+
+    // 使用自定义渲染器
+    marked.use({ renderer: createRenderer() });
 
     // Configure marked options
     marked.setOptions({
@@ -91,7 +109,11 @@ export function Preview() {
           </ul>
         </div>
       )}
-      <div className="preview-content">
+      <div
+        className="preview-content"
+        ref={scrollRef as React.RefObject<HTMLDivElement>}
+        onScroll={(e) => onScroll?.((e.target as HTMLDivElement).scrollTop)}
+      >
         <article
           className="markdown-body"
           dangerouslySetInnerHTML={{ __html: html }}

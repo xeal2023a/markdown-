@@ -22,6 +22,9 @@ function App() {
   });
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const editorRef = useRef<HTMLDivElement>(null);
+  const previewRef = useRef<HTMLDivElement>(null);
+  const isScrolling = useRef(false);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -71,6 +74,26 @@ function App() {
     window.print();
   };
 
+  const handleScroll = useCallback((position: number) => {
+    if (isScrolling.current) return;
+    isScrolling.current = true;
+
+    // Sync scroll to other panel
+    if (editorRef.current && previewRef.current) {
+      const editorScrollable = editorRef.current.querySelector('.editor-content, .code-editor') as HTMLElement;
+      const previewScrollable = previewRef.current.querySelector('.preview-content') as HTMLElement;
+
+      if (editorScrollable && previewScrollable) {
+        editorScrollable.scrollTop = position;
+        previewScrollable.scrollTop = position;
+      }
+    }
+
+    setTimeout(() => {
+      isScrolling.current = false;
+    }, 50);
+  }, []);
+
   const toggleTheme = () => {
     const themes: Theme[] = ['light', 'dark', 'sepia'];
     const currentIndex = themes.indexOf(theme);
@@ -88,8 +111,8 @@ function App() {
       <div className="app">
         <Sidebar />
         <main className="main-content" ref={containerRef}>
-          <div className="editor-panel" style={{ width: `${splitPosition}%` }}>
-            <Editor />
+          <div className="editor-panel" style={{ width: `${splitPosition}%` }} ref={editorRef}>
+            <Editor scrollRef={editorRef} onScroll={handleScroll} />
           </div>
           <div
             className={`split-handle ${isDragging ? 'dragging' : ''}`}
@@ -112,7 +135,7 @@ function App() {
                 导出 PDF
               </button>
             </div>
-            <Preview />
+            <Preview scrollRef={previewRef} onScroll={handleScroll} />
           </div>
         </main>
       </div>
