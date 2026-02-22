@@ -1,0 +1,121 @@
+:root {
+  /* Light theme (default) */
+  --bg-color: #ffffff;
+  --sidebar-bg: #f8f9fa;
+  --editor-bg: #ffffff;
+  --preview-bg: #ffffff;
+  --toc-bg: #f8f9fa;
+  --input-bg: #ffffff;
+
+  --text-primary: #24292e;
+  --text-secondary: #6a737d;
+
+  --border-color: #e1e4e8;
+  --hover-bg: #f3f4f6;
+  --active-bg: #e8f0fe;
+  --accent-bg: #e8f0fe;
+  --code-bg: #f6f8fa;
+  --table-header-bg: #f6f8fa;
+
+  --accent-color: #0969da;
+  --accent-hover: #0860ca;
+
+  --danger-bg: #ffeef0;
+  --danger-color: #cf222e;
+}
+
+[data-theme="dark"] {
+  --bg-color: #0d1117;
+  --sidebar-bg: #161b22;
+  --editor-bg: #0d1117;
+  --preview-bg: #0d1117;
+  --toc-bg: #161b22;
+  --input-bg: #21262d;
+
+  --text-primary: #c9d1d9;
+  --text-secondary: #8b949e;
+
+  --border-color: #30363d;
+  --hover-bg: #21262d;
+  --active-bg: #1f3a5f;
+  --accent-bg: #1f3a5f;
+  --code-bg: #161b22;
+  --table-header-bg: #161b22;
+
+  --accent-color: #58a6ff;
+  --accent-hover: #79b8ff;
+
+  --danger-bg: #3d1d20;
+  --danger-color: #f85149;
+}
+
+[data-theme="sepia"] {
+  --bg-color: #f4ecd8;
+  --sidebar-bg: #ebe3d3;
+  --editor-bg: #f4ecd8;
+  --preview-bg: #f4ecd8;
+  --toc-bg: #ebe3d3;
+  --input-bg: #f4ecd8;
+
+  --text-primary: #433422;
+  --text-secondary: #6b5c45;
+
+  --border-color: #d4c9b5;
+  --hover-bg: #e4dcc8;
+  --active-bg: #ddd3be;
+  --accent-bg: #ddd3be;
+  --code-bg: #e4dcc8;
+  --table-header-bg: #e4dcc8;
+
+  --accent-color: #986d3b;
+  --accent-hover: #7d5a32;
+
+  --danger-bg: #f0e0d8;
+  --danger-color: #a63d32;
+}
+
+/* GitHub Markdown Style */
+.markdown-body.github-style {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.markdown-body.github-style h1,
+.markdown-body.github-style h2 {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.3em;
+}
+
+.markdown-body.github-style h1 { font-size: 2em; }
+.markdown-body.github-style h2 { font-size: 1.5em; }
+
+.markdown-body.github-style code {
+  background-color: var(--code-bg);
+  border-radius: 6px;
+  padding: 0.2em 0.4em;
+}
+
+.markdown-body.github-style pre {
+  background-color: var(--code-bg);
+  border-radius: 6px;
+}
+
+.markdown-body.github-style blockquote {
+  border-left: 0.25em solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 0 1em;
+}
+
+.markdown-body.github-style table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.markdown-body.github-style table th,
+.markdown-body.github-style table td {
+  border: 1px solid var(--border-color);
+  padding: 6px 13px;
+}
+
+.markdown-body.github-style table tr:nth-child(2n) {
+  background-color: var(--table-header-bg);
+}

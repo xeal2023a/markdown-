@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"D:/markdown笔记项目\" && npm create vite@latest . -- --template react-ts 2>&1)",
+      "Bash(cd \"D:/markdown笔记项目\" && npm create vite@latest marknote -- --template react-ts 2>&1)",
+      "Bash(cd \"D:/markdown笔记项目\" && npm install 2>&1)",
+      "Bash(cd \"D:/markdown笔记项目\" && npm install marked marked-gfm highlight.js idb @uiw/react-textarea-code-editor 2>&1)",
+      "Bash(cd \"D:/markdown笔记项目\" && npm install marked highlight.js idb @uiw/react-textarea-code-editor 2>&1)",
+      "Bash(cd \"D:/markdown笔记项目\" && npm install -D @types/node 2>&1)",
+      "Bash(cd \"D:/markdown笔记项目\" && npm install marked-highlight 2>&1)",
+      "Bash(cd \"D:/markdown笔记项目\" && npm run build 2>&1)",
+      "Bash(cd \"D:/markdown笔记项目\" && npm run dev 2>&1)",
+      "Bash(head:*)",
+      "Bash(true:*)",
+      "Bash(cd:*)"
+    ]
+  }
+}
